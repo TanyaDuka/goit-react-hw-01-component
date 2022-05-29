@@ -12,7 +12,7 @@ const FriendList = ({ friends }) => {
                         avatar={friend.avatar}
                         name={friend.name}
                         isOnline={friend.isOnline}
-                        id={friend.id}
+                        key={friend.id}
                     />
                 )}
             </ul>
@@ -21,12 +21,14 @@ const FriendList = ({ friends }) => {
 }
 
 FriendList.propTypes = {
-    friend: {
-        avatar: propTypes.string,
+    friends: propTypes.arrayOf(
+      propTypes.exact({
+        avatar: propTypes.string.isRequired,
         name: propTypes.string.isRequired,
-        isOnline: propTypes.bool.isRequired,
-        id:propTypes.number.isRequired,
-    }
+        isOnline: propTypes.bool,
+        id: propTypes.number.isRequired
+      })
+    ).isRequired,
 }
 
 export default FriendList;

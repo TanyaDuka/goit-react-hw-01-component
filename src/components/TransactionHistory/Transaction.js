@@ -2,10 +2,10 @@ import React from "react";
 import propTypes from 'prop-types';
 
 
-const Transaction = ({id,type,amount,currency}) => {
+const Transaction = ({type,amount,currency}) => {
     return (
         
-            <tr key={id}>
+            <tr >
                 <td>{type}</td>
                 <td>{ amount}</td>
                 <td>{ currency}</td>
@@ -15,7 +15,6 @@ const Transaction = ({id,type,amount,currency}) => {
 }
 
 Transaction.propTypes = {
-    id: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     amount: propTypes.string.isRequired,
     currency: propTypes.string.isRequired
