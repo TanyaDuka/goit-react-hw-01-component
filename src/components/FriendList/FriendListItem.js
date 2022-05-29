@@ -1,0 +1,29 @@
+import React from "react";
+import propTypes from 'prop-types';
+import s from './FriendListItem.module.css';
+import defaultAvatar from './defaultAvatar.jpg';
+
+const FriendListItem = ({avatar, name, isOnline, id}) => {
+    return (
+        <>
+            <li className={s.Item} key={id} >
+                <span className={s.Status} style={{ backgroundColor: isOnline ? 'green' : 'red' }} />
+                <img className={s.Avatar} src={avatar} alt="avatar" width="48" />
+                <p className={s.Name}>{name}</p>
+            </li>
+        </>
+    );
+}
+
+FriendListItem.defaultProps = {
+    avatar:defaultAvatar,
+}
+
+FriendListItem.propTypes = {
+    avatar: propTypes.string,
+    name: propTypes.string.isRequired,
+    isOnline: propTypes.bool.isRequired,
+    id: propTypes.number.isRequired,
+};
+
+export default FriendListItem;
