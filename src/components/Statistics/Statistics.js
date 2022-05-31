@@ -3,43 +3,42 @@ import propTypes from 'prop-types';
 import s from './Statistics.module.css';
 import bgColor from './bgColor';
 
-const Statistics = ({title, stats }) => {
-    return (
-        <>
-            <section className={s.statistics}>
-                {title && <h2 className={s.title}>{title}</h2>}
-                
+const Statistics = ({ title, stats }) => {
+  return (
+    <>
+      <section className={s.statistics}>
+        {title && <h2 className={s.title}>{title}</h2>}
 
-                <ul className={s.statList}>
-                    {stats.map((stat) => (
-                        <li
-                            className={s.item}
-                            key={stat.id}
-                            style={{backgroundColor:bgColor()}}>
-                            <span className={s.label}>{stat.label}</span>
-                            <span className={s.percentage}>{stat.percentage}</span>
-                    </li>
-                    ))}
-                    
-                    
-                </ul>
-            </section>
-        </>
-    );
-
-}
+        <ul className={s.statList}>
+          {stats.map(({ id, label, percentage }) => (
+            <li
+              className={s.item}
+              key={id}
+              style={{ backgroundColor: bgColor() }}
+            >
+              <span className={s.label}>{label}</span>
+              <span className={s.percentage}>{percentage}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
+  );
+};
 
 Statistics.defaultProps = {
-    title: '',
+  title: '',
 };
 
 Statistics.propTypes = {
-    title: propTypes.string,
-    // stats: propTypes.shape( {
-    //     id: propTypes.string.isRequired,
-    //     label: propTypes.string.isRequired,
-    //     percentage: propTypes.number.isRequired,
-    // }),
+  title: propTypes.string,
+  stats: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string.isRequired,
+      label: propTypes.string.isRequired,
+      percentage: propTypes.number.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Statistics;
